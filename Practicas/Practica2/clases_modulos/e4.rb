@@ -1,33 +1,60 @@
 module Countable
 
-  @methodsCalls = Hash.new
+  #metodos que terminaran siendo parte de la clase
+  module ClassMethods
 
-  #metodo que será invocado cuando Countable es incluido, deberia
-  #inicializar un contador para cada metodo, y redefinir cada metodo
-  #de la clase a la que se incluye
-  def included
-
-    self.methods.each do |method|
-      #inicializa en 0 las llamadas en el hash
-      @methodsCalls[method] = 0
-      #renombramos todos los methods
-      alias_method ('old' + method.to_s).to_sym, method
+    def count_invocations_of(sym)
+      #renombramos el metodo de instancia a trackear
+      alias_method ('old' + sym.to_s).to_sym, sym
       #agregamos los methods que acabamos de renombrar
-      self.class.define_method(method){@methodsCalls[method]+=1; self.send(('old' + method.to_s).to_sym)}
+      self.send(:define_method,sym){self.call_to_method(sym); self.send(('old' + sym.to_s).to_sym)}
+    end
+
+  end
+
+  #metodos de instancia
+  def methods_calls(sym = nil)
+    if sym != nil
+      @methodsCalls[sym]
+    else
+      @methodsCalls ||= Hash.new(0)
     end
   end
 
-  def count_invocations_of(sym)
-    #no cabe en este diseño, podria ser
-    @methodsCalls[sym]= 0
+  def call_to_method(sym)
+    puts 'sumando uno a ' + sym.to_s
+    (self.methods_calls)[sym] += 1
   end
 
   def invoked?(sym)
-    @methodsCalls[sym] > 0
+    self.methods_calls(sym)  > 0
   end
 
   def invoked_times(sym)
-    @methodsCalls[sym]
+    self.methods_calls(sym)
+  end
+
+  #metodo recive como parametro la clase q lo esta incluyendo al momento
+  #de la inclusion
+  def self.included(base)
+    #hacemos que la clase que incluye a este modulo, extienda el submodulo
+    #ClassMethods que contiene los metodos de clase que se quieren agregar
+    base.extend(ClassMethods)
   end
 
 end
+
+#test
+
+class Person
+  include Countable
+  def say_hi
+    puts 'HEYOOOO!!'
+  end
+  def say_bye
+    puts 'ADIOS, AMIGOS'
+  end
+  count_invocations_of(:say_hi)
+end
+
+person = Person.new
