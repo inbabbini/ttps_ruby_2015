@@ -13,6 +13,7 @@ module Countable
   end
 
   #metodos de instancia
+
   def methods_calls(sym = nil)
     if sym != nil
       @methodsCalls[sym]
@@ -22,16 +23,15 @@ module Countable
   end
 
   def call_to_method(sym)
-    puts 'sumando uno a ' + sym.to_s
     (self.methods_calls)[sym] += 1
   end
 
   def invoked?(sym)
-    self.methods_calls(sym)  > 0
+      self.methods_calls(sym)  > 0
   end
 
   def invoked_times(sym)
-    self.methods_calls(sym)
+      self.methods_calls(sym)
   end
 
   #metodo recive como parametro la clase q lo esta incluyendo al momento
