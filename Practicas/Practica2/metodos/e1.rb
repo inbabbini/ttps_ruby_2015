@@ -4,4 +4,4 @@ def sort_numeric_array(narray)
   narray.sort
 end
 
-sort_numeric_array([14,6,2,3,0,10])
+# sort_numeric_array([14,6,2,3,0,10])

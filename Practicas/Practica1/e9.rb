@@ -1,7 +1,13 @@
 def string_array_long(string_array)
-  r_array = []
+
+  #validation
   string_array.each do |string|
-    r_array.push(string.size)
+    if string.class != String
+      raise TypeError, 'Invalid input'
+    end
   end
-  r_array
+
+  #action
+  string_array.map { |string| string.size }
+
 end

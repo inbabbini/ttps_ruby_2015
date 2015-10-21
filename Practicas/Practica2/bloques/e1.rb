@@ -14,8 +14,8 @@ end
 
 #probando
 
-nil_output? { } # => true
-
-nil_output? { puts 'sarasa' } # => true
-
-nil_output? { 'SARASA' } # => false
+# nil_output? { } # => true
+#
+# nil_output? { puts 'sarasa' } # => true
+#
+# nil_output? { 'SARASA' } # => false

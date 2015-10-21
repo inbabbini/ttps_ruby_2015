@@ -11,4 +11,4 @@ def stringify_params(*params)
 
 end
 
-stringify_params(['som',1],{mom: 2, fom: 'pep'},1)
+# stringify_params(['som',1],{mom: 2, fom: 'pep'},1)
