@@ -4,36 +4,41 @@ module Countable
   module ClassMethods
 
     def count_invocations_of(sym)
+
+      #definimos el accessor a la variable de instancia @method_calls
+      if !self.method_defined?(:method_calls)
+        define_method(:method_calls) do
+          @method_calls ||= Hash.new(0)
+        end
+      end
+
       #renombramos el metodo de instancia a trackear
       alias_method ('old' + sym.to_s).to_sym, sym
-      #agregamos los methods que acabamos de renombrar
-      self.send(:define_method,sym){self.call_to_method(sym); self.send(('old' + sym.to_s).to_sym)}
+
+      #agregamos el metodo que acabamos de renombrar
+      define_method(sym) do
+        @method_calls[sym]+= 1
+        self.send(('old' + sym.to_s).to_sym)
+      end
+
     end
 
   end
 
   #metodos de instancia
 
-  def method_calls
-    @method_calls ||= Hash.new(0)
-  end
-
-  def call_to_method(sym)
-    method_calls[sym] += 1
-  end
-
   def invoked?(sym)
     if !method_calls.has_key?(sym)
       raise RuntimeError, 'Non tracked method requested'
     end
-    method_calls[sym]  > 0
+    self.method_calls[sym]  > 0
   end
 
   def invoked_times(sym)
     if !method_calls.has_key?(sym)
       raise RuntimeError, 'Non tracked method requested'
     end
-    method_calls[sym]
+    self.method_calls[sym]
   end
 
   #metodo recive como parametro la clase q lo esta incluyendo al momento

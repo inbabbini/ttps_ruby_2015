@@ -170,34 +170,26 @@ describe 'Countable module' do
 
   end
 
-  #Testing behavior of instances when tracked methods have not been invoked
+  # Testing initialization of the mixin once included
 
-  describe 'When method being counted has not been invoked yet' do
-
-    describe 'sending #invoked? to it' do
-
-      it 'should return false' do
-
-      end
-
-
-    describe 'sending #invoked_times to it' do
-
-      it 'should return 0' do
-
-      end
-
-    end
-
+  class Stub
+    include Countable
+    def stub_method; end
+    def stub_method_2; end
+    count_invocations_of(:stub_method)
   end
 
-  # Testing initialization of the mixin once included
+  TEST_STUB = Stub.new
+
 
   describe 'When mixing in the module' do
 
     describe 'including class' do
 
       it 'should respond to method #count_invocations_of' do
+
+        assert(Stub.method_defined?(:count_invocations_of))
+        assert(Stub.respond_to?(:count_invocations_of))
 
       end
 
@@ -207,9 +199,47 @@ describe 'Countable module' do
 
       it 'should respond to #invoked?' do
 
+        assert(TEST_STUB.method_defined?(:invoked?))
+        assert(TEST_STUB.respond_to?(:invoked?))
+
+        assert(Stub.new.method_defined?(:invoked?))
+        assert(Stub.new.respond_to?(:invoked?))
+
       end
 
       it 'should respond to #invoked_times' do
+
+        assert(TEST_STUB.method_defined?(:invoked_times))
+        assert(TEST_STUB.respond_to?(:invoked_times))
+
+        assert(Stub.new.method_defined?(:invoked_times))
+        assert(Stub.new.respond_to?(:invoked_times))
+
+      end
+
+    end
+
+  end
+
+
+  #Testing behavior of instances when tracked methods have not been invoked
+
+  describe 'When method being counted has not been invoked yet' do
+
+    describe 'sending #invoked? to it' do
+
+      it 'should return false' do
+
+        refute(TEST_STUB.invoked?(:stub_method)
+
+      end
+
+
+    describe 'sending #invoked_times to it' do
+
+      it 'should return 0' do
+
+        assert_equal(0,TEST_STUB.invoked_times(:stub_method)
 
       end
 
@@ -223,9 +253,22 @@ describe 'Countable module' do
 
     describe 'using #invoked? with a non tracked method' do
 
+      it 'should raise an exception' do
+
+        assert_raises(RuntimeError) { TEST_STUB.invoked?(:stub_method_2) }
+        assert_raises(RuntimeError) { Stub.new.invoked?(:stub_method_2) }
+
+
+      end
+
     end
 
     describe 'using #invoked_times with a non tracked method' do
+
+      it 'should raise an exception' do
+        assert_raises(RuntimeError) { TEST_STUB.invoked_times(:stub_method_2) }
+        assert_raises(RuntimeError) { Stub.new.invoked_times(:stub_method_2) }
+      end
 
     end
 
