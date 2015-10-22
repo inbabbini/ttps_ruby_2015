@@ -3,6 +3,10 @@
 
 def nil_output?(&block)
 
+  if block == nil
+    raise ArgumentError, 'No argument block given'
+  end
+
   ret = block.call
 
   if ret != nil
@@ -10,6 +14,7 @@ def nil_output?(&block)
   else
     true
   end
+  
 end
 
 #probando

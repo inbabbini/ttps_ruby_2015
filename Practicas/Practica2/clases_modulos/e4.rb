@@ -14,24 +14,26 @@ module Countable
 
   #metodos de instancia
 
-  def methods_calls(sym = nil)
-    if sym != nil
-      @methodsCalls[sym]
-    else
-      @methodsCalls ||= Hash.new(0)
-    end
+  def method_calls
+    @method_calls ||= Hash.new(0)
   end
 
   def call_to_method(sym)
-    (self.methods_calls)[sym] += 1
+    method_calls[sym] += 1
   end
 
   def invoked?(sym)
-      self.methods_calls(sym)  > 0
+    if !method_calls.has_key?(sym)
+      raise RuntimeError, 'Non tracked method requested'
+    end
+    method_calls[sym]  > 0
   end
 
   def invoked_times(sym)
-      self.methods_calls(sym)
+    if !method_calls.has_key?(sym)
+      raise RuntimeError, 'Non tracked method requested'
+    end
+    method_calls[sym]
   end
 
   #metodo recive como parametro la clase q lo esta incluyendo al momento
@@ -51,10 +53,14 @@ class Person
   def say_hi
     puts 'HEYOOOO!!'
   end
+  def say_thanks
+    'GRACIELA'
+  end
   def say_bye
     puts 'ADIOS, AMIGOS'
   end
   count_invocations_of(:say_hi)
+  count_invocations_of(:say_bye)
 end
 
 person = Person.new

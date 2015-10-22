@@ -4,11 +4,14 @@
 
 def stringify_params(*params)
 
-  params.each do |object|
-    print 'largo ', object.to_s.length, ' rep: '
-    puts object.to_s
+  if params.size < 1
+    raise ArgumentError, 'No argumnets given'
   end
 
+  params.each do |object|
+    puts object.to_s + ' --> ' + object.to_s.length.to_s
+  end
+  nil
 end
 
 # stringify_params(['som',1],{mom: 2, fom: 'pep'},1)
