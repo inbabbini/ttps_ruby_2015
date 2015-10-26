@@ -12,4 +12,4 @@ input = [15,16,14,3]
 #como parametros separados) deberia "explotar" el input al enviarlo por el
 #parametro, es decir, separa el array en partes individuales
 
-sort_numeric_params(input)
+sort_numeric_params(*input)

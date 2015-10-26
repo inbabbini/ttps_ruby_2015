@@ -65,7 +65,7 @@ end
 # 	Tratando excepcion rovocada en tiempo de ejecucion
 # 	Ejecutando ensure de fun3
 # 	manejador de excepciones de fun1
-# 	ejecutando ensure de fun1 ?
+# 	ejecutando ensure de fun1
 # 	manejador de excepciones de main
 # 	correxion de x
 #retry
@@ -87,4 +87,4 @@ end
 # comienzo del bloque begin .. end que se esta ejecutando en el momento
 # Si se moviera la linea x = 0 dentro del segundo bloque begin .. end
 # provocaria un loop infinito ya que se ejecutaria cada vez que se da el
-# retry, anulando cada vez el arreglo hecho dentro del rescue 
+# retry, anulando cada vez el arreglo hecho dentro del rescue
