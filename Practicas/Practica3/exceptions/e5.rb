@@ -37,6 +37,7 @@ def opcion_3
   b = 3
   c = a.map { |x| x * b } rescue 0
   puts c.inspect
+  end
 end
 
 # opcion_3 retorna nil e imprime 0, por algun motivo poner el rescue ahi
