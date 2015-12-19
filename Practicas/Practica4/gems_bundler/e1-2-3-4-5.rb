@@ -5,12 +5,12 @@
 # cierta funcionalidad/codigo, desde simples funciones a
 # grandes librerias/frameworks, los cuales pueden ser distribuidos
 # y compartidos rapidamente.
-
+#
 # De esta manera, las gemas permiten reutilizar codigo en
 # distintos proyectos, facilita el mantenimiento de codigo
 # al centralizarlo, y permite compartirlo con la comunidad
 # a travez de plataformas como RubyGems
-
+#
 # Cada gema tiene definidos
   # Nombre
   # Version (x.y.z)
