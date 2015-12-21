@@ -1,6 +1,9 @@
 class Client < ActiveRecord::Base
   has_many :bills
   has_many :people, through: :bills
+  has_many :contacts
+
+  enum genre: ['male', 'female']
 
   # Model validations
   validates :first_name, :last_name,
@@ -14,7 +17,7 @@ class Client < ActiveRecord::Base
     length: { minimum: 6, maximum: 8 }
 
   validates :gender,
-    inclusion: { in: %w(male female) },
+    inclusion: { in: self.genres },
     presence: true
 
   validates :cui,
@@ -33,6 +36,8 @@ class Client < ActiveRecord::Base
     length: { minimum: 4, maximum: 255 },
     presence: true
 
+
+  #Model logic
   def to_s
     "#{self.first_name} #{self.last_name}"
   end

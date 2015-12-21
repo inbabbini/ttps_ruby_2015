@@ -24,7 +24,7 @@
       <%= f.input :birthdate, :html5 => true %>
     </div>
     <div class="field">
-      <%= f.input :gender %>
+      <%= f.input :gender, collection: Client.genres %>
     </div>
     <div class="field">
       <%= f.input :cui %>
