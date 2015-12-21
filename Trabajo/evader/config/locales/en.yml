@@ -20,4 +20,8 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  welcome_message: "Welcome to E-Vader!"
   hello: "Hello world"
+  bills: "bills"
+  people: "people"
+  clients: "clients"

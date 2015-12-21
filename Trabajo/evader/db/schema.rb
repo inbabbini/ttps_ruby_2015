@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20151214204843) do
     t.string   "first_name", limit: 50,  null: false
     t.string   "last_name",  limit: 50,  null: false
     t.date     "birthdate",              null: false
+    t.string   "dni",                    null: false
     t.string   "gender",     limit: 6,   null: false
     t.string   "cui",        limit: 13,  null: false
     t.string   "phone",      limit: 20,  null: false

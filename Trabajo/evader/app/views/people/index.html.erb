@@ -1,8 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing People</h1>
+<div class="page-header">
+  <h1>Listing People</h1>
+</div>
 
-<table>
+<div class="col-xs-12">
+<table class="table">
   <thead>
     <tr>
       <th>Name</th>
@@ -24,6 +27,5 @@
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Person', new_person_path %>
+</div>
+<%= link_to 'New Person', new_person_path, :class => 'btn btn-default' %>

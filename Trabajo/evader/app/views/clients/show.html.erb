@@ -1,49 +1,53 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>First name:</strong>
-  <%= @client.first_name %>
-</p>
+<div class="page-header">
+  <h1><%= @client.to_s %><small>'s information</small></h1>
+</div>
 
-<p>
-  <strong>Last name:</strong>
-  <%= @client.last_name %>
-</p>
+<h3> Client info</h3>
+<ul>
+  <li>First name: <%= @client.first_name %></li>
+  <li>Last name: <%= @client.last_name %></li>
+  <li>Birthdate: <%= @client.birthdate %></li>
+  <li>Age: <%= @client.age %></li>
+  <li>Gender: <%= @client.gender %></li>
+  <li>CUIL/CUIT: <%= @client.cui %></li>
+</ul>
+<h3> Contact info </h3>
+<ul>
+  <li><%= @client.phone %></li>
+  <li><%= @client.mail %></li>
+  <li><%= @client.skype %></li>
+  <li><%= @client.address %></li>
+</ul>
 
-<p>
-  <strong>Birthdate:</strong>
-  <%= @client.birthdate %>
-</p>
+<h3> Client's yearly billings </h3>
+<ul>
+  <%if @client.amount_billed_per_year.each do |yb| %>
+    <li> <%= yb.emission_year %> : $<%= yb.yearly_amount %>  </li>
+  <% end.empty? %>
+    <li> Client has no bills </li>
+  <% end %>
+</ul>
 
-<p>
-  <strong>Gender:</strong>
-  <%= @client.gender %>
-</p>
+<h3>Client's monthly billing for current year</h3>
+<ul>
+  <%if @client.emmited_bills_amount_per_month.each do |mb| %>
+    <li> Month <%= mb.emission_month %> : $<%= mb.monthly_amount %>  </li>
+  <% end.empty? %>
+    <li> Client has no bills </li>
+  <% end %>
+</ul>
 
-<p>
-  <strong>Cui:</strong>
-  <%= @client.cui %>
-</p>
+<h3>Client's most billed phisical/legal people</h3>
+<ol>
+  <%if @client.most_billed_people.each do |mbp| %>
+    <li> <%= mbp.name %> </li>
+  <% end.empty? %>
+    <li> Client hasn't billed anyone yet </li>
+  <% end %>
+</ol>
 
-<p>
-  <strong>Phone:</strong>
-  <%= @client.phone %>
-</p>
-
-<p>
-  <strong>Mail:</strong>
-  <%= @client.mail %>
-</p>
-
-<p>
-  <strong>Skype:</strong>
-  <%= @client.skype %>
-</p>
-
-<p>
-  <strong>Address:</strong>
-  <%= @client.address %>
-</p>
 
 <%= link_to 'Edit', edit_client_path(@client) %> |
 <%= link_to 'Back', clients_path %>
