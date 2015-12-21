@@ -1,0 +1,13 @@
+<%= simple_form_for([@client,@contact]) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :client, collection: [@client] %>
+    <%= f.input :medium, collection: Contact.mediums %>
+    <%= f.input :value %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

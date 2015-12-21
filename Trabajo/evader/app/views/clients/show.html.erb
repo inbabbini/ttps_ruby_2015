@@ -3,51 +3,69 @@
 <div class="page-header">
   <h1><%= @client.to_s %><small>'s information</small></h1>
 </div>
+<div class="row">
+  <div class="col-xs-offset-3 col-xs-6">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h3 class="panel-title">Client info</h3>
+        <ul>
+          <li>First name: <%= @client.first_name %></li>
+          <li>Last name: <%= @client.last_name %></li>
+          <li>Birthdate: <%= @client.birthdate %></li>
+          <li>Age: <%= @client.age %></li>
+          <li>Gender: <%= @client.gender %></li>
+          <li>CUIL/CUIT: <%= @client.cui %></li>
+        </ul>
+        <h3 class="panel-title"> Contact info <%= link_to 'Add contact', new_client_contact_path(@client), :class => 'btn btn-xs btn-default' %></h3>
+        <ul>
+          <%if @client.contacts.each do |c| %>
+            <li>
+              <%= c.medium %> : <%= c.value %>
+              <%= link_to 'Show', client_contact_path(@client, c) %>
+              <%= link_to 'Edit', edit_client_contact_path(@client, c) %>
+              <%= link_to 'Destroy', client_contact_path(@client, c), method: :delete, data: { confirm: 'Are you sure?' } %>
+            </li>
+          <% end.empty? %>
+            <li> Client has no contact information </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
 
-<h3> Client info</h3>
-<ul>
-  <li>First name: <%= @client.first_name %></li>
-  <li>Last name: <%= @client.last_name %></li>
-  <li>Birthdate: <%= @client.birthdate %></li>
-  <li>Age: <%= @client.age %></li>
-  <li>Gender: <%= @client.gender %></li>
-  <li>CUIL/CUIT: <%= @client.cui %></li>
-</ul>
-<h3> Contact info </h3>
-<ul>
-  <li><%= @client.phone %></li>
-  <li><%= @client.mail %></li>
-  <li><%= @client.skype %></li>
-  <li><%= @client.address %></li>
-</ul>
+  <div class="col-xs-offset-3 col-xs-6">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h4> Client's yearly billings </h4>
+        <ul>
+          <%if @client.amount_billed_per_year.each do |yb| %>
+            <li> <%= yb.emission_year %> : $<%= yb.yearly_amount %>  </li>
+          <% end.empty? %>
+            <li> Client has no bills </li>
+          <% end %>
+        </ul>
 
-<h3> Client's yearly billings </h3>
-<ul>
-  <%if @client.amount_billed_per_year.each do |yb| %>
-    <li> <%= yb.emission_year %> : $<%= yb.yearly_amount %>  </li>
-  <% end.empty? %>
-    <li> Client has no bills </li>
-  <% end %>
-</ul>
+        <h4>Client's monthly billing for current year</h4>
+        <ul>
+          <%if @client.emmited_bills_amount_per_month.each do |mb| %>
+            <li> Month <%= mb.emission_month %> : $<%= mb.monthly_amount %>  </li>
+          <% end.empty? %>
+            <li> Client has no bills </li>
+          <% end %>
+        </ul>
 
-<h3>Client's monthly billing for current year</h3>
-<ul>
-  <%if @client.emmited_bills_amount_per_month.each do |mb| %>
-    <li> Month <%= mb.emission_month %> : $<%= mb.monthly_amount %>  </li>
-  <% end.empty? %>
-    <li> Client has no bills </li>
-  <% end %>
-</ul>
-
-<h3>Client's most billed phisical/legal people</h3>
-<ol>
-  <%if @client.most_billed_people.each do |mbp| %>
-    <li> <%= mbp.name %> </li>
-  <% end.empty? %>
-    <li> Client hasn't billed anyone yet </li>
-  <% end %>
-</ol>
-
+        <h4>Client's most billed phisical/legal people</h4>
+        <ol>
+          <%if @client.most_billed_people.each do |mbp| %>
+            <li> <%= mbp.name %> </li>
+          <% end.empty? %>
+            <li> Client hasn't billed anyone yet </li>
+          <% end %>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
 
 <%= link_to 'Edit', edit_client_path(@client) %> |
 <%= link_to 'Back', clients_path %>

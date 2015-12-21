@@ -3,7 +3,7 @@ class Client < ActiveRecord::Base
   has_many :people, through: :bills
   has_many :contacts
 
-  enum genre: ['male', 'female']
+  enum genre: {'male' => 'male', 'female' => 'female'}
 
   # Model validations
   validates :first_name, :last_name,
@@ -23,19 +23,6 @@ class Client < ActiveRecord::Base
   validates :cui,
     format: /\A\d{2}\-\d{8}\-\d{1}\z/,
     presence: true
-
-  validates :phone,
-    format: /([\w\-\']{2,})([\s]+)([\w\-\']{2,})/,
-    presence:true
-
-  validates :mail,
-    format: /@/,
-    presence: true
-
-  validates :address,
-    length: { minimum: 4, maximum: 255 },
-    presence: true
-
 
   #Model logic
   def to_s

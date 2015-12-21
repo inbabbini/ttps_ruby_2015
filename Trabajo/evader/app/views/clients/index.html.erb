@@ -14,10 +14,6 @@
         <th>Birthdate</th>
         <th>Gender</th>
         <th>Cui</th>
-        <th>Phone</th>
-        <th>Mail</th>
-        <th>Skype</th>
-        <th>Address</th>
         <th colspan="3"></th>
       </tr>
     </thead>
@@ -31,10 +27,6 @@
           <td><%= client.birthdate %></td>
           <td><%= client.gender %></td>
           <td><%= client.cui %></td>
-          <td><%= client.phone %></td>
-          <td><%= client.mail %></td>
-          <td><%= client.skype %></td>
-          <td><%= client.address %></td>
           <td><%= link_to 'Show', client %></td>
           <td><%= link_to 'Edit', edit_client_path(client) %></td>
           <td><%= link_to 'Destroy', client, method: :delete, data: { confirm: 'Are you sure?' } %></td>

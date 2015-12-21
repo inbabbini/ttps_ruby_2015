@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151214204843) do
+ActiveRecord::Schema.define(version: 20151221174820) do
 
   create_table "bills", force: :cascade do |t|
     t.integer  "client_id",                                         null: false
@@ -27,19 +27,25 @@ ActiveRecord::Schema.define(version: 20151214204843) do
   add_index "bills", ["person_id"], name: "index_bills_on_person_id"
 
   create_table "clients", force: :cascade do |t|
-    t.string   "first_name", limit: 50,  null: false
-    t.string   "last_name",  limit: 50,  null: false
-    t.date     "birthdate",              null: false
-    t.string   "dni",                    null: false
-    t.string   "gender",     limit: 6,   null: false
-    t.string   "cui",        limit: 13,  null: false
-    t.string   "phone",      limit: 20,  null: false
-    t.string   "mail",       limit: 50,  null: false
-    t.string   "skype",      limit: 50
-    t.string   "address",    limit: 255, null: false
+    t.string   "first_name", limit: 50, null: false
+    t.string   "last_name",  limit: 50, null: false
+    t.string   "dni",                   null: false
+    t.date     "birthdate",             null: false
+    t.string   "gender",     limit: 6,  null: false
+    t.string   "cui",        limit: 13, null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  create_table "contacts", force: :cascade do |t|
+    t.integer  "client_id"
+    t.string   "medium",     limit: 50
+    t.string   "value",      limit: 100
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
+
+  add_index "contacts", ["client_id"], name: "index_contacts_on_client_id"
 
   create_table "people", force: :cascade do |t|
     t.string   "name",       limit: 50, null: false

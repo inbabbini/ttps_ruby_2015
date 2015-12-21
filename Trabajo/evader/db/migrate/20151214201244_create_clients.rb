@@ -7,10 +7,6 @@ class CreateClients < ActiveRecord::Migration
       t.date :birthdate, null: false
       t.string :gender, limit: 6, null: false
       t.string :cui, limit: 13, null: false
-      t.string :phone, limit: 20, null: false
-      t.string :mail, limit: 50, null: false
-      t.string :skype, limit: 50
-      t.string :address, limit: 255, null: false
 
       t.timestamps null: false
     end
