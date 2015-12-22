@@ -1,7 +1,7 @@
 class Client < ActiveRecord::Base
-  has_many :bills
+  has_many :bills, dependent: :restrict_with_error
   has_many :people, through: :bills
-  has_many :contacts
+  has_many :contacts, dependent: :restrict_with_error
 
   enum genre: {'male' => 'male', 'female' => 'female'}
 
@@ -54,6 +54,7 @@ class Client < ActiveRecord::Base
     .select("name, COUNT(*) as bills_amount")
     .group('name')
     .order('bills_amount DESC')
+    .limit(5)
   end
 
 end

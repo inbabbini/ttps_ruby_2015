@@ -1,28 +1,20 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# E-Vader (TTPS Ruby)
 
-Things you may want to cover:
+## Instructions to download the application
 
-* Ruby version
+* Clone (or download) repository, just the /Trabajo is needed
+* Go to /Trabajo/evader and run ´$ bundle install´ to resolve and download dependencies
 
-* System dependencies
+## Run the application
 
-* Configuration
+* Migrate and seed the database using ´$ bundle exec rake db:setup RAILS_ENV=development´
+* Run the application using ´$ bundle exec rails s´, this runs on localhost:3000
 
-* Database creation
+## Run the tests
+* Setup the database using ´$ bundle exec rake db:setup RAILS_ENV=test´
+* To test Client model, run ´$ bundle exec ruby -Itest test/models/client_test.rb´
+* To test Bill model, run ´$ bundle exec ruby -Itest test/models/bill_test.rb´
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Note: Running ´$ bundle exec rake db:setup´ without specifying the RAILS_ENV setups both development and test databases

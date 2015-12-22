@@ -21,9 +21,11 @@
           <%if @client.contacts.each do |c| %>
             <li>
               <%= c.medium %> : <%= c.value %>
-              <%= link_to 'Show', client_contact_path(@client, c) %>
-              <%= link_to 'Edit', edit_client_contact_path(@client, c) %>
+              [
+              <%= link_to 'Show', client_contact_path(@client, c) %> |
+              <%= link_to 'Edit', edit_client_contact_path(@client, c) %> |
               <%= link_to 'Destroy', client_contact_path(@client, c), method: :delete, data: { confirm: 'Are you sure?' } %>
+              ]
             </li>
           <% end.empty? %>
             <li> Client has no contact information </li>

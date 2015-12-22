@@ -11,24 +11,24 @@ class Contact < ActiveRecord::Base
   validates :value,
     format: /([\w\-\']{2,})([\s]+)([\w\-\']{2,})/,
     presence: true,
-    if: "medium == phone"
+    if: "medium == 'phone'"
 
   #mail validation
   validates :value,
     format: /@/,
     presence: true,
-    if: "medium == mail"
+    if: "medium == 'mail'"
 
   #address validation
   validates :value,
     length: { minimum: 4, maximum: 255 },
     presence: true,
-    if: "medium == address"
+    if: "medium == 'address'"
 
   #skype validation
   validates :value,
     length: { minimum: 4, maximum: 255 },
     presence: true,
-    if: "medium == skype"
+    if: "medium == 'skype'"
 
 end

@@ -1,17 +1,22 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  client_id: 
-  person_id: 
-  description: MyString
-  amount: 
-  amount: 
-  emission_date: 2015-12-14
+  client: :one
+  person: :two
+  description: "500 Batarangs"
+  amount: 5000
+  emission_date: 2015-11-29
 
 two:
-  client_id: 
-  person_id: 
-  description: MyString
-  amount: 
-  amount: 
+  client: :two
+  person: :three
+  description: "A lot of potatoes"
+  amount: 10000.99
   emission_date: 2015-12-14
+
+three:
+  client: :three
+  person: :one
+  description: 123123
+  amount: "5000"
+  emission_date: 1000-11-11

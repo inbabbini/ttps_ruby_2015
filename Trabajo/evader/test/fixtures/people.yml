@@ -1,9 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  cui: MyString
+  name: "Carrefour"
+  cui: "45-23444111-2"
 
 two:
-  name: MyString
-  cui: MyString
+  name: "WayneCorp"
+  cui: "11-67888888-3"
+
+three:
+  name: "Marcos Aurelio"
+  cui: "23-32555222-1"
