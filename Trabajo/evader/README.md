@@ -4,7 +4,7 @@
 
 ## Instructions to download the application
 
-* Clone (or download) repository, just the /Trabajo is needed
+* Clone (or download) repository, just the /Trabajo/evader is needed
 * Go to /Trabajo/evader and run ´$ bundle install´ to resolve and download dependencies
 
 ## Run the application
