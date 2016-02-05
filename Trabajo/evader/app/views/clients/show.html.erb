@@ -59,7 +59,7 @@
         <h4>Client's most billed phisical/legal people</h4>
         <ol>
           <%if @client.most_billed_people.each do |mbp| %>
-            <li> <%= mbp.name %> </li>
+            <li> <%= mbp.name %> : $<%= mbp.billed_amount %> </li>
           <% end.empty? %>
             <li> Client hasn't billed anyone yet </li>
           <% end %>

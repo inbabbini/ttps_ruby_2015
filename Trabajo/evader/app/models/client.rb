@@ -51,9 +51,9 @@ class Client < ActiveRecord::Base
 
   def most_billed_people
     self.people
-    .select("name, COUNT(*) as bills_amount")
+    .select("name, SUM(amount) as billed_amount")
     .group('name')
-    .order('bills_amount DESC')
+    .order('billed_amount DESC')
     .limit(5)
   end
 

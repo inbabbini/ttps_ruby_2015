@@ -11,7 +11,7 @@ class Person < ActiveRecord::Base
     presence: true
 
   def to_s
-    "#{self.name}" 
+    "#{self.name}"
   end
 
 end
